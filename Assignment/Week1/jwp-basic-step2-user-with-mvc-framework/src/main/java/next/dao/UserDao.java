@@ -54,14 +54,16 @@ public class UserDao {
     }
 
     public User findByUserId(String userId) throws SQLException {
+        List<User> list = null;
         User ret = null;
 
         try {
-            ret = connector.<User>runQuery("SELECT userId, password, name, email FROM USERS WHERE userid=?", User.class, userId).get(0);
-
+            list = connector.<User>runQuery("SELECT userId, password, name, email FROM USERS WHERE userid=?", User.class, userId).get(0);
+            ret = !list.isEmpty() ? list.get(0) : null;
         } catch (Exception e) {
             log.error("FIND ERROR", e);
         }
+        
         return ret;
     }
 }
