@@ -113,7 +113,6 @@ public class DBConnector {
                                     field.setAccessible(true);
                                     try {
                                         field.set(instance, rs.getObject(i));
-                                        System.out.println("객체의 " + field.getName() + "에 값(" + rs.getObject(i) + ")을 적용함");
                                     } catch (IllegalArgumentException | IllegalAccessException e) {
                                         e.printStackTrace();
                                         dbClosing(pstmt, con, rs);
