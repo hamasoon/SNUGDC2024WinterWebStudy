@@ -58,7 +58,7 @@ public class UserDao {
         User ret = null;
 
         try {
-            list = connector.<User>runQuery("SELECT userId, password, name, email FROM USERS WHERE userid=?", User.class, userId).get(0);
+            list = connector.<User>runQuery("SELECT userId, password, name, email FROM USERS WHERE userid=?", User.class, userId);
             ret = !list.isEmpty() ? list.get(0) : null;
         } catch (Exception e) {
             log.error("FIND ERROR", e);
